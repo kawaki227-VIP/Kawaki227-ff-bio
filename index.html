@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#02040a">
+<meta name="description" content="KAWAKI227 — FF BIO APK.">
+<meta property="og:title" content="KAWAKI227 • FF BIO APK">
+<meta property="og:description" content="Télécharge l'application KAWAKI227-FF-BIO.">
+<meta property="og:image" content="https://files.catbox.moe/dgmdgv.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://files.catbox.moe/dgmdgv.jpg">
+<title>KAWAKI227 • FF BIO APK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--cyan:#65d9ff;--green:#00ff88;--red:#ff174f;--bg:#02040a;--panel:rgba(4,12,20,.78)}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:#02040a;color:#eaffff;font-family:Rajdhani,Arial,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background:linear-gradient(rgba(0,255,136,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,.035) 1px,transparent 1px);background-size:36px 36px;pointer-events:none;z-index:-1}
+#matrix{position:fixed;inset:0;width:100%;height:100%;opacity:.20;z-index:-2}
+.scan{position:fixed;inset:0;pointer-events:none;background:linear-gradient(transparent 50%,rgba(0,255,136,.025) 50%);background-size:100% 4px;z-index:20}
+#boot{position:fixed;inset:0;background:#000;z-index:100;display:grid;place-items:center;padding:25px;transition:opacity .7s,visibility .7s}
+#boot.hide{opacity:0;visibility:hidden}
+.bootbox{width:min(720px,100%);font-family:monospace;color:var(--green);text-shadow:0 0 12px var(--green)}
+.boottitle{font:800 28px Orbitron;text-align:center;margin-bottom:18px;letter-spacing:4px}
+#terminal{min-height:150px;border:1px solid rgba(0,255,136,.35);padding:18px;background:rgba(0,20,12,.35);box-shadow:0 0 35px rgba(0,255,136,.08)}
+.cursor{display:inline-block;width:9px;height:16px;background:var(--green);vertical-align:-3px;animation:blink .7s infinite}
+@keyframes blink{50%{opacity:0}}
+.wrap{width:min(1050px,92%);margin:auto;padding:24px 0 30px}
+nav{position:sticky;top:12px;z-index:10;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 14px;border:1px solid rgba(101,217,255,.25);background:rgba(1,6,12,.72);backdrop-filter:blur(12px);border-radius:18px;box-shadow:0 0 30px rgba(0,255,136,.08)}
+.logo{font:800 18px Orbitron;color:var(--cyan);letter-spacing:2px}
+.status{font-family:monospace;font-size:11px;color:var(--green)}
+.hero{margin-top:22px;display:grid;grid-template-columns:1fr 280px;gap:20px;align-items:center}
+.card{background:var(--panel);border:1px solid rgba(101,217,255,.18);border-radius:25px;padding:28px;box-shadow:0 0 40px rgba(0,255,136,.06),inset 0 0 35px rgba(0,0,0,.35);backdrop-filter:blur(10px)}
+h1{font:800 clamp(36px,8vw,76px) Orbitron;line-height:.95;letter-spacing:3px;color:#fff;text-shadow:0 0 15px var(--cyan),0 0 45px rgba(0,255,136,.35)}
+.glitch{position:relative;display:inline-block}
+.sub{margin:17px 0 24px;color:#9db5bf;font-size:18px}
+.tag{display:inline-flex;padding:7px 11px;border:1px solid rgba(0,255,136,.3);border-radius:99px;color:var(--green);font-family:monospace;font-size:12px;margin-bottom:16px}
+.profile{width:100%;aspect-ratio:1;border-radius:22px;object-fit:cover;border:1px solid rgba(101,217,255,.4);box-shadow:0 0 35px rgba(101,217,255,.18)}
+.buttons{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.btn{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:13px 16px;border-radius:14px;border:1px solid rgba(101,217,255,.32);background:linear-gradient(135deg,rgba(101,217,255,.12),rgba(0,255,136,.06));color:#eaffff;text-decoration:none;font-weight:700;font-size:16px;letter-spacing:.5px;cursor:pointer;transition:.2s;overflow:hidden}
+.btn:before{content:"";position:absolute;inset:-2px;background:linear-gradient(90deg,transparent,rgba(101,217,255,.25),transparent);transform:translateX(-120%);transition:.5s}
+.btn:hover:before{transform:translateX(120%)}
+.btn:hover{transform:translateY(-2px);border-color:var(--cyan);box-shadow:0 0 22px rgba(101,217,255,.18)}
+.btn.primary{border-color:rgba(0,255,136,.55);color:#03140c;background:linear-gradient(135deg,var(--green),#69ffd0);box-shadow:0 0 25px rgba(0,255,136,.2)}
+.btn.danger{border-color:rgba(255,23,79,.35)}
+section{margin-top:20px}
+h2{font:800 22px Orbitron;margin-bottom:13px;color:var(--cyan)}
+.note{color:#8ea5ad;line-height:1.6}
+.social-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.download-box{margin-top:20px;text-align:center}
+.download-box .btn{margin-top:14px;width:100%}
+#gate{display:none;margin-top:16px;padding:15px;border:1px dashed rgba(0,255,136,.35);border-radius:16px;background:rgba(0,255,136,.035)}
+
+.check{display:flex;gap:10px;align-items:flex-start;color:#b8c9ce;font-size:14px;margin:10px 0 13px}
+.check input{accent-color:var(--green);width:18px;height:18px}
+footer{text-align:center;padding:35px 0 12px;color:#71848a;font-family:monospace;font-size:13px}
+.music{position:fixed;right:16px;bottom:16px;z-index:30;border:1px solid rgba(101,217,255,.3);background:rgba(1,7,12,.88);color:var(--cyan);border-radius:50%;width:50px;height:50px;cursor:pointer;box-shadow:0 0 25px rgba(101,217,255,.15)}
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#07120f;border:1px solid rgba(0,255,136,.4);padding:12px 18px;border-radius:12px;color:var(--green);z-index:50;transition:.3s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.profile{max-width:300px;margin:auto;display:block}.buttons,.social-grid{grid-template-columns:1fr}nav{position:relative}.card{padding:21px}}
+</style>
+</head>
+<body>
+<div id="boot">
+  <div class="bootbox">
+    <div class="boottitle">KAWAKI227 // SYSTEM</div>
+    <div id="terminal"></div>
+  </div>
+</div>
+<canvas id="matrix"></canvas>
+<div class="scan"></div>
+
+<div class="wrap">
+<nav>
+  <div class="logo">KAWAKI227</div>
+  <div class="status">● ONLINE / FF-BIO</div>
+</nav>
+
+<main>
+<section class="hero">
+  <div class="card">
+    <span class="tag">[ ACCESS // APPLICATION ]</span>
+    <h1><span class="glitch">FF BIO APK</span></h1>
+    <p class="sub">Application <b>KAWAKI227-FF-BIO</b> — codes, styles et outils pour Free Fire.</p>
+    <div class="buttons">
+      <button class="btn primary" id="copyBtn">⧉ Copier le lien</button>
+      <a class="btn danger" href="https://wa.me/22781189418?text=Bonjour%20Kawaki227%2C%20j%27ai%20un%20probl%C3%A8me." target="_blank" rel="noopener">⚠ Signaler un problème</a>
+    </div>
+  </div>
+  <div class="card">
+    <img class="profile" src="https://files.catbox.moe/dgmdgv.jpg" alt="KAWAKI227">
+  </div>
+</section>
+
+<section class="card download-box">
+  <h2>DOWNLOAD ACCESS</h2>
+  <p class="note">Ouvre TikTok et YouTube avec les boutons ci-dessous. Après les deux ouvertures, attends 10 secondes pour débloquer le lien de téléchargement 👀</p>
+
+  <div class="social-grid" style="margin-top:15px">
+    <a class="btn" id="tiktokBtn2" href="https://www.tiktok.com/@kawaki227" target="_blank" rel="noopener">♪ TikTok</a>
+    <a class="btn" id="youtubeBtn2" href="https://youtube.com/@kawaki-227?si=NbpHIxRShWJbRU4W" target="_blank" rel="noopener">▶ YouTube</a>
+  </div>
+
+  <div id="countdownBox" style="display:none;margin-top:18px">
+    <div class="note" id="countdownText" style="font-family:monospace;color:var(--green);font-size:18px">Attends 10s pour le lien de téléchargement 👀</div>
+    <div style="height:7px;background:rgba(255,255,255,.08);border-radius:99px;margin-top:10px;overflow:hidden">
+      <div id="progress" style="height:100%;width:0%;background:var(--green);box-shadow:0 0 12px var(--green);transition:width 1s linear"></div>
+    </div>
+  </div>
+
+  <div id="gate" style="display:none;margin-top:16px">
+    <a id="downloadBtn" class="btn primary" href="https://www.mediafire.com/file/dwpolvo4xanuskt/KAWAKI227-FF-BIO.apk/file" target="_blank" rel="noopener">⬇ Télécharger KAWAKI227-FF-BIO.apk</a>
+  </div>
+
+  <p class="note" style="margin-top:12px;font-size:12px">KAWAKI-227</p>
+</section>
+
+<section class="card">
+  <h2>CONTACT</h2>
+  <p class="note">Un souci avec l'application ou le site ? Utilise le bouton WhatsApp « Signaler un problème ».</p>
+</section>
+</main>
+
+<footer>BY KAWAKI227 • FF BIO STYLE • 2026</footer>
+</div>
+
+<button class="music" id="musicBtn" aria-label="Musique">♫</button>
+<div class="toast" id="toast">Lien copié !</div>
+
+<script>
+// Matrix
+const c=document.getElementById('matrix'),x=c.getContext('2d');
+function resize(){c.width=innerWidth;c.height=innerHeight} resize(); addEventListener('resize',resize);
+const chars='01KAWAKI227FFBIOHACKER';
+let font=15, cols=()=>Math.floor(c.width/font), drops=[];
+function resetDrops(){drops=Array(cols()).fill(1)} resetDrops();
+function matrix(){x.fillStyle='rgba(2,4,10,.10)';x.fillRect(0,0,c.width,c.height);x.fillStyle='#00ff88';x.font=font+'px monospace';for(let i=0;i<drops.length;i++){let t=chars[Math.floor(Math.random()*chars.length)];x.fillText(t,i*font,drops[i]*font);if(drops[i]*font>c.height&&Math.random()>.975)drops[i]=0;drops[i]++}} setInterval(matrix,45);
+
+// Boot sequence
+const lines=['> booting KAWAKI227...','> loading FF-BIO module...','> initializing matrix interface...','> secure channel: ONLINE','> access granted.'];
+let i=0, term=document.getElementById('terminal');
+function boot(){if(i<lines.length){term.innerHTML+=lines[i]+'<br>';i++;setTimeout(boot,280)}else{term.innerHTML+='<br>> KAWAKI227 READY <span class="cursor"></span>';setTimeout(()=>document.getElementById('boot').classList.add('hide'),900)}} boot();
+
+// TikTok + YouTube gate: both buttons must be opened, then 10-second countdown.
+let openedTikTok=false, openedYouTube=false, countdownStarted=false;
+const countdownBox=document.getElementById('countdownBox');
+const countdownText=document.getElementById('countdownText');
+const progress=document.getElementById('progress');
+const gate=document.getElementById('gate');
+
+function markOpened(type){
+  if(type==='tiktok') openedTikTok=true;
+  if(type==='youtube') openedYouTube=true;
+  if(openedTikTok && openedYouTube && !countdownStarted) startCountdown();
+}
+function startCountdown(){
+  countdownStarted=true;
+  countdownBox.style.display='block';
+  let left=10;
+  countdownText.textContent='Attends 10s pour le lien de téléchargement 👀';
+  progress.style.width='0%';
+  const timer=setInterval(()=>{
+    left--;
+    progress.style.width=((10-left)*10)+'%';
+    countdownText.textContent = left>0
+      ? `Attends ${left}s pour le lien de téléchargement 👀`
+      : 'Lien de téléchargement débloqué 👀';
+    if(left<=0){
+      clearInterval(timer);
+      gate.style.display='block';
+      gate.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  },1000);
+}
+
+document.getElementById('tiktokBtn2').addEventListener('click',()=>markOpened('tiktok'));
+document.getElementById('youtubeBtn2').addEventListener('click',()=>markOpened('youtube'));
+
+// Copy current site URL
+const toast=document.getElementById('toast');
+document.getElementById('copyBtn').onclick=async()=>{
+  try{await navigator.clipboard.writeText(location.href);toast.textContent='Lien du site copié !';}
+  catch(e){toast.textContent='Copie non disponible : copie l’adresse du navigateur.'}
+  toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200)
+};
+
+// Lightweight synthesized ambient music; browsers require a user gesture.
+let audioCtx=null, osc=null, gain=null, playing=false;
+function startMusic(){
+  audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+  osc=audioCtx.createOscillator(); gain=audioCtx.createGain();
+  osc.type='sine';osc.frequency.value=110;gain.gain.value=.018;
+  osc.connect(gain).connect(audioCtx.destination);osc.start();playing=true;
+  document.getElementById('musicBtn').textContent='🔊';
+}
+document.getElementById('musicBtn').onclick=()=>{
+ if(!audioCtx) startMusic();
+ else if(playing){gain.gain.setTargetAtTime(.0001,audioCtx.currentTime,.05);playing=false;document.getElementById('musicBtn').textContent='♫'}
+ else{gain.gain.setTargetAtTime(.018,audioCtx.currentTime,.05);playing=true;document.getElementById('musicBtn').textContent='🔊'}
+};
+</script>
+</body>
+</html>
