@@ -88,7 +88,7 @@ footer{text-align:center;padding:35px 0 12px;color:#71848a;font-family:monospace
     <p class="sub">Application <b>KAWAKI227-FF-BIO</b> — codes, styles et outils pour Free Fire.</p>
     <div class="buttons">
       <button class="btn primary" id="copyBtn">⧉ Copier le lien</button>
-      <a class="btn danger" href="https://wa.me/22781289418?text=Bonjour%20Kawaki227%2C%20j%27ai%20un%20probl%C3%A8me." target="_blank" rel="noopener">⚠ Signaler un problème</a>
+      <a class="btn danger" href="https://wa.me/22781189418?text=Bonjour%20Kawaki227%2C%20j%27ai%20un%20probl%C3%A8me." target="_blank" rel="noopener">⚠ Signaler un problème</a>
     </div>
   </div>
   <div class="card">
@@ -128,6 +128,7 @@ footer{text-align:center;padding:35px 0 12px;color:#71848a;font-family:monospace
 <footer>BY KAWAKI227 • FF BIO STYLE • 2026</footer>
 </div>
 
+<audio id="bgMusic" loop preload="auto"><source src="music.mp3" type="audio/mpeg"></audio>
 <button class="music" id="musicBtn" aria-label="Musique">♫</button>
 <div class="toast" id="toast">Lien copié !</div>
 
@@ -188,20 +189,100 @@ document.getElementById('copyBtn').onclick=async()=>{
   toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200)
 };
 
-// Lightweight synthesized ambient music; browsers require a user gesture.
-let audioCtx=null, osc=null, gain=null, playing=false;
-function startMusic(){
-  audioCtx=new (window.AudioContext||window.webkitAudioContext)();
-  osc=audioCtx.createOscillator(); gain=audioCtx.createGain();
-  osc.type='sine';osc.frequency.value=110;gain.gain.value=.018;
-  osc.connect(gain).connect(audioCtx.destination);osc.start();playing=true;
-  document.getElementById('musicBtn').textContent='🔊';
+// 🎵 KAWAKI227 — la vraie musique music.mp3 démarre au premier clic/tap
+const bgMusic = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+
+bgMusic.volume = 0.35;
+let playing = false;
+
+async function startMusicOnFirstTap(){
+  if(playing) return;
+  try{
+    await bgMusic.play();
+    playing = true;
+    musicBtn.textContent = '🔊';
+  }catch(e){
+    console.log('Lecture audio bloquée, nouvelle interaction nécessaire.');
+  }
 }
-document.getElementById('musicBtn').onclick=()=>{
- if(!audioCtx) startMusic();
- else if(playing){gain.gain.setTargetAtTime(.0001,audioCtx.currentTime,.05);playing=false;document.getElementById('musicBtn').textContent='♫'}
- else{gain.gain.setTargetAtTime(.018,audioCtx.currentTime,.05);playing=true;document.getElementById('musicBtn').textContent='🔊'}
+
+// Un seul clic/tap n'importe où sur le site lance music.mp3
+document.addEventListener('pointerdown', startMusicOnFirstTap, {once:true});
+
+musicBtn.onclick = async (event) => {
+  event.stopPropagation();
+
+  try{
+    if(bgMusic.paused){
+      await bgMusic.play();
+      playing = true;
+      musicBtn.textContent = '🔊';
+    }else{
+      bgMusic.pause();
+      playing = false;
+      musicBtn.textContent = '♫';
+    }
+  }catch(e){
+    musicBtn.textContent = '⚠';
+    setTimeout(()=>musicBtn.textContent='♫',1500);
+  }
 };
+</script>
+
+<script>
+// KAWAKI227 — musique : démarre au premier clic/tap n'importe où sur le site
+const bgMusic = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+let musicStarted = false;
+
+if (bgMusic) {
+  bgMusic.volume = 0.35;
+
+  function tryStartMusic(e) {
+    if (musicStarted) return;
+    const p = bgMusic.play(); // appelé directement dans le geste utilisateur
+    if (p && typeof p.then === 'function') {
+      p.then(() => {
+        musicStarted = true;
+        if (musicBtn) musicBtn.textContent = '🔊';
+      }).catch(() => {
+        // Le navigateur peut refuser : le prochain clic retentera.
+      });
+    } else {
+      musicStarted = true;
+      if (musicBtn) musicBtn.textContent = '🔊';
+    }
+  }
+
+  // Capture = fonctionne même si l'utilisateur clique sur le loader/une carte/un bouton.
+  document.addEventListener('pointerdown', tryStartMusic, true);
+  document.addEventListener('touchstart', tryStartMusic, true);
+  document.addEventListener('click', tryStartMusic, true);
+
+  if (musicBtn) {
+    musicBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (!musicStarted) {
+        tryStartMusic(e);
+        return;
+      }
+      if (bgMusic.paused) {
+        bgMusic.play().then(() => {
+          musicBtn.textContent = '🔊';
+        }).catch(() => {});
+      } else {
+        bgMusic.pause();
+        musicBtn.textContent = '♫';
+      }
+    });
+  }
+
+  bgMusic.addEventListener('ended', () => {
+    musicStarted = false;
+    if (musicBtn) musicBtn.textContent = '♫';
+  });
+}
 </script>
 </body>
 </html>
